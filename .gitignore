@@ -4,8 +4,3 @@ desktop.ini
 .DS_Store
 .vscode/
 .idea/
-
-# El dominio propio espera a que se verifique el WHOIS de krovax.site.
-# Publicar este archivo con el DNS sin resolver tumba el sitio: GitHub Pages
-# deja de servir en github.io y redirige a un dominio que no responde.
-CNAME.pendiente
