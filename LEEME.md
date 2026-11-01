@@ -12,53 +12,80 @@ estilo.css       todo el diseño, un solo archivo
 
 ---
 
-## 1. Antes de publicar — queda UN dato
+## 1. Estado — completo
 
-Ya están puestos el correo (`eliuthseguil@gmail.com`), el alojamiento
-(servidor propio en Contabo, Alemania), Chatwoot autohospedado y la retención
-de 2 años.
+Todo declarado y sin marcadores pendientes:
 
-Falta una sola cosa, marcada con recuadro en `privacidad.html`, **sección 6**:
+| Dato | Valor |
+|---|---|
+| Contacto | `eliuthseguil@gmail.com` |
+| Alojamiento | servidor propio, Contabo GmbH (Alemania) |
+| Atención y almacenamiento | Chatwoot autohospedado |
+| Modelo de lenguaje | Google (Gemini) |
+| Retención | 2 años desde el último mensaje |
 
-> `[NOMBRE DEL PROVEEDOR DEL MODELO DE LENGUAJE]`
-
-Poné cuál usás (OpenAI, Anthropic, Google…). Si el modelo corre en el mismo
-VPS y el texto no sale hacia afuera, borrá esa línea y decilo explícitamente:
-es un punto a favor.
-
-Es el único dato que no se puede dejar genérico. Enumerar a quién le llegan
-los datos es un requisito, y es lo que se contrasta contra lo que la app hace
-de verdad.
+Si alguno de esos cambia —cambiás de proveedor de modelo, movés el servidor,
+ajustás el plazo— hay que actualizar `privacidad.html`. Una política que dejó
+de describir la realidad es peor que no tener ninguna: declara algo que no se
+cumple.
 
 ---
 
 ## 2. Publicar en GitHub Pages
 
+El repositorio local ya está iniciado, con el primer commit hecho y la
+identidad de este repo apuntando a `eliuthseguil@gmail.com` (el `user.name`
+global de esta máquina es la cuenta de ISIL; acá se sobreescribe solo para
+este proyecto).
+
+**Paso 1 — crear el repositorio vacío en GitHub.** En
+<https://github.com/new>:
+
+- Owner: `eliuthseguil-cloud`
+- Repository name: `bot-soft`
+- Visibility: **Public** (Pages no funciona en privado con cuenta gratuita)
+- **No** marcar «Add a README», ni .gitignore, ni licencia: el repo local ya
+  tiene contenido y GitHub rechazaría el push.
+
+**Paso 2 — subirlo:**
+
 ```bash
 cd sitio-bot-whatsapp
-git init
-git add .
-git commit -m "Sitio de Bot Soft"
-git branch -M main
-git remote add origin https://github.com/TU-USUARIO/bot-soft.git
+git remote add origin https://github.com/eliuthseguil-cloud/bot-soft.git
 git push -u origin main
 ```
 
-En GitHub: **Settings → Pages → Source: Deploy from a branch → main / (root)
-→ Save**. En un par de minutos queda en:
+Git va a pedir usuario y contraseña. **La contraseña de GitHub no sirve**:
+hay que usar un token. Se crea en Settings → Developer settings → Personal
+access tokens → Tokens (classic) → Generate new token, con el permiso `repo`.
+Ese token se pega donde pide la contraseña.
+
+**Paso 3 — encender Pages.** En el repositorio: **Settings → Pages →
+Source: Deploy from a branch → Branch: `main` / `(root)` → Save**.
+
+En uno o dos minutos queda publicado:
 
 ```
-https://TU-USUARIO.github.io/bot-soft/
-https://TU-USUARIO.github.io/bot-soft/privacidad.html
-https://TU-USUARIO.github.io/bot-soft/terminos.html
+https://eliuthseguil-cloud.github.io/bot-soft/
+https://eliuthseguil-cloud.github.io/bot-soft/privacidad.html
+https://eliuthseguil-cloud.github.io/bot-soft/terminos.html
 ```
 
-El repositorio debe ser **público** para que Pages funcione en una cuenta
-gratuita.
+> **Alternativa:** si nombrás el repositorio `eliuthseguil-cloud.github.io`
+> en vez de `bot-soft`, el sitio queda en la raíz
+> (`https://eliuthseguil-cloud.github.io/`). Se ve más como el sitio de un
+> negocio, que es lo que Meta espera. La contra es que esa dirección es única
+> por cuenta: si después querés publicar otra cosa, ya está ocupada.
 
-> Si en vez de `bot-soft` nombrás el repositorio `TU-USUARIO.github.io`, el
-> sitio queda en la raíz: `https://TU-USUARIO.github.io/`. Más limpio si no
-> pensás publicar otra cosa ahí.
+**Para actualizar el sitio más adelante:**
+
+```bash
+git add .
+git commit -m "qué cambió"
+git push
+```
+
+Pages reconstruye solo en un minuto.
 
 ---
 
@@ -85,6 +112,28 @@ Abrí `index.html` con doble clic — basta, es estático. Si preferís servirlo
 python -m http.server 8000
 # http://localhost:8000
 ```
+
+---
+
+---
+
+## La API key NO va en este repositorio
+
+La clave de Gemini se pasa al servicio por variable de entorno en el VPS, nunca
+en el código ni en un archivo versionado. Si una clave de Google llega a un
+repositorio público, GitHub la detecta y Google la revoca automáticamente — con
+el bot caído hasta que se genere otra.
+
+En el VPS:
+
+```bash
+# en el .env del servicio, con chmod 600
+GEMINI_API_KEY=...
+```
+
+Conviene además restringirla en Google Cloud Console (APIs y servicios →
+Credenciales): limitarla a la API de Generative Language, para que si se filtra
+no sirva para nada más.
 
 ---
 
