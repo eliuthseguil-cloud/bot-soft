@@ -12,9 +12,19 @@ estilo.css       todo el diseño, un solo archivo
 
 ---
 
-## 1. Estado — completo
+## 1. Estado — faltan tres datos de contacto
 
-Todo declarado y sin marcadores pendientes:
+En `index.html`, sección Contacto, quedan marcados con comentario:
+
+- `+51 TELEFONO` — el número real, en formato internacional
+- `DISTRITO` — basta el distrito, no hace falta calle ni número
+- `botsoft@krovax.site` — hay que crear el buzón (ver más abajo)
+
+Meta pide correo corporativo, dirección física **o** teléfono. Con cualquiera
+de los tres alcanza, pero los tres juntos dan señal de negocio real, que es lo
+que se está evaluando.
+
+Lo demás está declarado:
 
 | Dato | Valor |
 |---|---|
@@ -114,6 +124,69 @@ python -m http.server 8000
 ```
 
 ---
+
+
+---
+
+## Dominio propio — por qué y cómo
+
+Meta desconfía de los sitios en subdominios gratuitos de plataformas
+(`.wix.com`, `.blogspot.com`, y también `.github.io`). El sitio sigue alojado
+en GitHub Pages, pero se sirve bajo **botsoft.krovax.site**, que es un dominio
+propio registrado en Namecheap.
+
+El archivo `CNAME` de este repositorio ya declara ese dominio. Falta el DNS.
+
+### Paso 1 — en Namecheap
+
+Panel de `krovax.site` → **Advanced DNS** → Add New Record:
+
+| Campo | Valor |
+|---|---|
+| Type | `CNAME Record` |
+| Host | `botsoft` |
+| Value | `eliuthseguil-cloud.github.io.` |
+| TTL | Automatic |
+
+El punto final en el Value no es un error de tipeo: cierra el nombre.
+
+### Paso 2 — en GitHub
+
+Settings → Pages → **Custom domain**: `botsoft.krovax.site` → Save.
+
+Ahora sí ese campo tiene sentido: es exactamente para esto. Cuando GitHub
+valide el DNS (unos minutos, a veces hasta una hora), marcá **Enforce HTTPS**.
+
+### Paso 3 — verificar
+
+```
+https://botsoft.krovax.site/
+https://botsoft.krovax.site/privacidad.html
+https://botsoft.krovax.site/terminos.html
+```
+
+Esas son las URLs que van en Meta. La vieja de `github.io` sigue funcionando
+y redirige sola.
+
+---
+
+## Correo con el dominio propio
+
+Meta pide un correo «corporativo»; un Gmail cuenta como débil. **Zoho Mail**
+tiene un plan gratuito que alcanza de sobra:
+
+1. <https://www.zoho.com/mail/> → Pricing → **Forever Free Plan**
+2. Agregar el dominio `krovax.site`
+3. Zoho da unos registros TXT y MX para poner en Namecheap → Advanced DNS
+4. Crear el buzón `botsoft@krovax.site`
+
+Hasta que esté listo, ese correo del sitio **no recibe**. Si Meta escribe
+antes de configurarlo, el mensaje se pierde: conviene hacerlo antes de mandar
+la verificación.
+
+Alternativa más rápida: un *alias de reenvío* en Namecheap (Domain →
+Redirect Email), que manda lo de `botsoft@krovax.site` a tu Gmail. No sirve
+para responder desde esa dirección, pero al menos nada se pierde.
 
 ---
 
