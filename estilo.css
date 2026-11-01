@@ -1,0 +1,173 @@
+/* =============================================================================
+   Sitio personal — Eliuth Seguil
+   Un solo archivo, sin dependencias ni build: GitHub Pages lo sirve tal cual.
+   ========================================================================== */
+
+:root {
+  --fondo: #fbfaf9;
+  --papel: #ffffff;
+  --papel-2: #f2efed;
+  --tinta: #16181d;
+  --tinta-media: #585e68;
+  --tinta-suave: #8a909a;
+  --linea: #e5e1de;
+  --linea-fuerte: #cdc6c1;
+  --acento: #b8552f;
+  --acento-fondo: #f6e8e1;
+  --ancho: 740px;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-tema="claro"]) {
+    --fondo: #0f1114;
+    --papel: #16191e;
+    --papel-2: #1d2127;
+    --tinta: #e8e4e0;
+    --tinta-media: #a2a8b2;
+    --tinta-suave: #737984;
+    --linea: #262b32;
+    --linea-fuerte: #363c45;
+    --acento: #e08a5f;
+    --acento-fondo: #2a1c14;
+  }
+}
+
+* { box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  margin: 0;
+  background: var(--fondo);
+  color: var(--tinta);
+  font-family: "Outfit", "Segoe UI", system-ui, sans-serif;
+  font-size: 16px;
+  line-height: 1.65;
+  -webkit-font-smoothing: antialiased;
+}
+
+.lienzo { max-width: var(--ancho); margin: 0 auto; padding: 0 22px; }
+
+a { color: var(--acento); text-decoration-thickness: 1px; text-underline-offset: 2px; }
+a:hover { text-decoration-thickness: 2px; }
+
+code, .mono {
+  font-family: "JetBrains Mono", ui-monospace, Consolas, monospace;
+  font-size: .86em;
+}
+
+h1, h2, h3 { margin: 0; line-height: 1.25; text-wrap: balance; letter-spacing: -.015em; }
+h1 { font-size: clamp(30px, 6vw, 42px); font-weight: 600; }
+h2 { font-size: 20px; font-weight: 600; }
+h3 { font-size: 16px; font-weight: 600; }
+
+/* ---------- barra ---------- */
+.barra {
+  position: sticky; top: 0; z-index: 10;
+  background: color-mix(in srgb, var(--fondo) 88%, transparent);
+  backdrop-filter: blur(8px);
+  border-bottom: 1px solid var(--linea);
+}
+.barra .lienzo { display: flex; align-items: center; gap: 18px; height: 56px; }
+.marca {
+  font-family: "JetBrains Mono", monospace; font-size: 14px; font-weight: 500;
+  color: var(--tinta); text-decoration: none; letter-spacing: -.02em;
+}
+.barra nav { margin-left: auto; display: flex; gap: 16px; font-size: 14px; }
+.barra nav a { color: var(--tinta-media); text-decoration: none; }
+.barra nav a:hover { color: var(--acento); }
+
+/* ---------- portada ---------- */
+.portada { padding: 72px 0 52px; }
+.etiqueta {
+  display: inline-block; font-family: "JetBrains Mono", monospace;
+  font-size: 11.5px; letter-spacing: .08em; text-transform: uppercase;
+  color: var(--acento); background: var(--acento-fondo);
+  padding: 4px 10px; border-radius: 4px; margin-bottom: 18px;
+}
+.portada p.lede {
+  font-size: 17px; color: var(--tinta-media); max-width: 58ch; margin: 18px 0 0;
+}
+.ubicacion {
+  margin-top: 14px; font-size: 14px; color: var(--tinta-suave);
+  display: flex; gap: 14px; flex-wrap: wrap;
+}
+
+/* ---------- secciones ---------- */
+section { padding: 34px 0; border-top: 1px solid var(--linea); }
+section > h2 { margin-bottom: 20px; }
+.sub { color: var(--tinta-media); margin: -8px 0 20px; font-size: 15px; }
+
+/* ---------- experiencia ---------- */
+.puesto { padding: 0 0 26px 20px; border-left: 2px solid var(--linea); position: relative; }
+.puesto:last-child { padding-bottom: 0; }
+.puesto::before {
+  content: ""; position: absolute; left: -5px; top: 7px;
+  width: 8px; height: 8px; border-radius: 50%;
+  background: var(--linea-fuerte); border: 2px solid var(--fondo);
+}
+.puesto.actual::before { background: var(--acento); }
+.puesto .cuando {
+  font-family: "JetBrains Mono", monospace; font-size: 12px;
+  color: var(--tinta-suave); letter-spacing: -.01em;
+}
+.puesto .donde { color: var(--tinta-media); font-size: 14.5px; margin-top: 1px; }
+.puesto ul { margin: 10px 0 0; padding-left: 18px; color: var(--tinta-media); font-size: 15px; }
+.puesto li { margin-bottom: 5px; }
+
+/* ---------- tecnologías ---------- */
+.chips { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 12px; }
+.chip {
+  font-family: "JetBrains Mono", monospace; font-size: 11.5px;
+  background: var(--papel-2); color: var(--tinta-media);
+  padding: 3px 9px; border-radius: 4px; border: 1px solid var(--linea);
+}
+.grupo-tec { margin-bottom: 18px; }
+.grupo-tec h3 { font-size: 13px; color: var(--tinta-suave); font-weight: 500;
+  text-transform: uppercase; letter-spacing: .06em; }
+
+/* ---------- contacto ---------- */
+.tarjetas { display: grid; grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)); gap: 12px; }
+.tarjeta {
+  background: var(--papel); border: 1px solid var(--linea); border-radius: 9px;
+  padding: 16px 18px; text-decoration: none; color: inherit; display: block;
+}
+.tarjeta:hover { border-color: var(--acento); }
+.tarjeta .que {
+  font-family: "JetBrains Mono", monospace; font-size: 11px;
+  text-transform: uppercase; letter-spacing: .07em; color: var(--tinta-suave);
+}
+.tarjeta .valor { margin-top: 4px; font-size: 15px; word-break: break-all; }
+
+/* ---------- documentos legales ---------- */
+.legal { padding: 44px 0 20px; }
+.legal h2 { margin: 30px 0 10px; }
+.legal h3 { margin: 20px 0 6px; }
+.legal p, .legal li { color: var(--tinta-media); font-size: 15.5px; }
+.legal ul { padding-left: 20px; }
+.legal li { margin-bottom: 6px; }
+.legal .fecha {
+  font-family: "JetBrains Mono", monospace; font-size: 12.5px;
+  color: var(--tinta-suave); margin-top: 6px;
+}
+.aviso {
+  background: var(--acento-fondo); border-left: 3px solid var(--acento);
+  padding: 13px 16px; border-radius: 0 7px 7px 0; margin: 20px 0;
+  font-size: 14.5px; color: var(--tinta);
+}
+.aviso strong { color: var(--acento); }
+
+/* ---------- pie ---------- */
+footer {
+  border-top: 1px solid var(--linea); margin-top: 44px;
+  padding: 24px 0 40px; font-size: 13.5px; color: var(--tinta-suave);
+}
+footer .lienzo { display: flex; gap: 16px; flex-wrap: wrap; align-items: center; }
+footer nav { margin-left: auto; display: flex; gap: 14px; }
+footer a { color: var(--tinta-suave); text-decoration: none; }
+footer a:hover { color: var(--acento); }
+
+@media (max-width: 520px) {
+  .portada { padding: 48px 0 36px; }
+  footer nav { margin-left: 0; width: 100%; }
+}

@@ -1,0 +1,6 @@
+# Basura del sistema operativo y de los editores
+Thumbs.db
+desktop.ini
+.DS_Store
+.vscode/
+.idea/
