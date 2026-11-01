@@ -28,7 +28,7 @@ Lo demás está declarado:
 
 | Dato | Valor |
 |---|---|
-| Contacto | `eliuthseguil@gmail.com` |
+| Contacto | `david_seguil@hotmail.com` (el mismo de la cuenta de Meta) |
 | Alojamiento | servidor propio, Contabo GmbH (Alemania) |
 | Atención y almacenamiento | Chatwoot autohospedado |
 | Modelo de lenguaje | Google (Gemini) |
@@ -44,7 +44,7 @@ cumple.
 ## 2. Publicar en GitHub Pages
 
 El repositorio local ya está iniciado, con el primer commit hecho y la
-identidad de este repo apuntando a `eliuthseguil@gmail.com` (el `user.name`
+identidad de este repo apuntando a `david_seguil@hotmail.com` (el `user.name`
 global de esta máquina es la cuenta de ISIL; acá se sobreescribe solo para
 este proyecto).
 
