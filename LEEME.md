@@ -44,9 +44,13 @@ cumple.
 ## 2. Publicar en GitHub Pages
 
 El repositorio local ya está iniciado, con el primer commit hecho y la
-identidad de este repo apuntando a `david_seguil@hotmail.com` (el `user.name`
+identidad de este repo apuntando a `eliuthseguil@gmail.com` (el `user.name`
 global de esta máquina es la cuenta de ISIL; acá se sobreescribe solo para
 este proyecto).
+
+> Ese correo es el que **firma los commits**, no el de contacto del sitio.
+> El de contacto es `david_seguil@hotmail.com`, el mismo de la cuenta de Meta.
+> Son dos cosas distintas y no tienen por qué coincidir.
 
 **Paso 1 — crear el repositorio vacío en GitHub.** En
 <https://github.com/new>:
